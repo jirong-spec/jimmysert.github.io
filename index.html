@@ -58,9 +58,37 @@
             font-size: 0.875rem;
             color: #38bdf8;
         }
+
+        /* 網球動態裝飾 */
+        .tennis-ball-float {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #ccff00;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(2px);
+            z-index: 0;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 50px) rotate(90deg); }
+            50% { transform: translate(50px, 150px) rotate(180deg); }
+            75% { transform: translate(-50px, 100px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
     </style>
 </head>
-<body class="text-slate-200">
+<body class="text-slate-200 overflow-x-hidden">
+
+    <!-- 網球裝飾背景層 -->
+    <div class="fixed inset-0 pointer-events-none">
+        <div class="tennis-ball-float" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="tennis-ball-float" style="top: 70%; left: 85%; animation-delay: -5s; width: 60px; height: 60px;"></div>
+        <div class="tennis-ball-float" style="top: 40%; left: 75%; animation-delay: -10s; opacity: 0.05;"></div>
+    </div>
 
     <!-- 導覽列 -->
     <nav class="fixed top-0 w-full z-50 glass-card">
@@ -71,6 +99,7 @@
                 <a href="#about" class="nav-link">個人簡介</a>
                 <a href="#skills" class="nav-link">專業技術</a>
                 <a href="#portfolio" class="nav-link">專案作品</a>
+                <a href="#tennis-spirit" class="nav-link">運動精神</a>
                 <a href="#contact" class="nav-link text-sky-400">聯絡我</a>
             </div>
             <!-- 行動端菜單按鈕 -->
@@ -84,17 +113,18 @@
             <a href="#about" class="block" onclick="toggleMobileMenu()">個人簡介</a>
             <a href="#skills" class="block" onclick="toggleMobileMenu()">專業技術</a>
             <a href="#portfolio" class="block" onclick="toggleMobileMenu()">專案作品</a>
+            <a href="#tennis-spirit" class="block" onclick="toggleMobileMenu()">運動精神</a>
             <a href="#contact" class="block text-sky-400" onclick="toggleMobileMenu()">聯絡我</a>
         </div>
     </nav>
 
     <!-- 首頁區塊 -->
-    <header id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
-        <div class="text-center max-w-4xl">
-            <h2 class="text-lg font-semibold text-sky-400 mb-4">追求嚴謹邏輯與創新應用的</h2>
+    <header id="home" class="min-h-screen flex items-center justify-center pt-20 px-6 relative">
+        <div class="text-center max-w-4xl z-10">
+            <h2 class="text-lg font-semibold text-sky-400 mb-4">追求嚴謹邏輯與運動韌性的</h2>
             <h1 class="text-5xl md:text-7xl font-bold mb-6">AI / 機器學習 <span class="gradient-text">工程師</span></h1>
             <p class="text-slate-400 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
-                結合紮實的數學背景與 PyTorch 深度學習實作能力。擅長將複雜資料轉化為智慧模型，專注於從模型訓練到 MLOps 部署的完整生命週期。
+                結合紮實的數學背景與 PyTorch 深度學習實作能力。我將網球場上的專注與穩定帶入 AI 開發，專注於從模型訓練到 MLOps 部署的完整生命週期。
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="#about" class="px-8 py-3 bg-sky-500 hover:bg-sky-400 text-white rounded-full font-semibold transition shadow-lg shadow-sky-500/20">了解更多關於我</a>
@@ -104,16 +134,16 @@
     </header>
 
     <!-- 關於我區塊 -->
-    <section id="about" class="py-24 px-6 bg-slate-900/50">
+    <section id="about" class="py-24 px-6 bg-slate-900/50 relative">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div class="relative group">
                 <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
                 <div class="relative rounded-2xl overflow-hidden bg-slate-800">
-                    <!-- 建議更換為您的運動或專業形象照 -->
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop" alt="開發環境" class="w-full h-[450px] object-cover opacity-80">
+                    <!-- 替換為展現活力或網球背景的照片 -->
+                    <img src="https://images.unsplash.com/photo-1595435064219-510cc6a5bbd4?w=800&auto=format&fit=crop" alt="網球訓練" class="w-full h-[450px] object-cover opacity-80">
                     <div class="absolute bottom-4 left-4 flex gap-2">
                         <span class="skill-tag bg-slate-900/80">#數學碩士</span>
-                        <span class="skill-tag bg-slate-900/80">#網球校隊</span>
+                        <span class="skill-tag bg-slate-900/80">#網球校隊隊員</span>
                     </div>
                 </div>
             </div>
@@ -123,16 +153,45 @@
                     我具備扎實的數學背景，擅長以嚴謹的邏輯思維分析問題，並將數學模型應用於機器學習與人工智慧領域。熟悉資料前處理、特徵工程、模型訓練與評估流程，能夠從資料到模型部署完整參與專案開發。
                 </p>
                 <p class="text-slate-400 mb-6 leading-relaxed">
-                    除了技術開發，我曾身為大學網球校隊成員，代表學校參與比賽並協助團隊訓練。這段經驗培養了我良好的團隊協作能力、高壓環境中的穩定度，以及主動持續改善的習慣。
+                    除了技術開發，我曾身為大學網球校隊成員，代表學校參與比賽並協助團隊訓練排程與技術協作。這段經歷不僅鍛鍊了我的體魄，更培養了我良好的團隊協作能力、在高壓比賽環境中的情緒穩定度，以及主動持續改善技術細節的習慣。
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
                     <div class="p-4 glass-card rounded-xl border-l-4 border-sky-500">
                         <h4 class="font-bold text-sky-400">學術訓練</h4>
                         <p class="text-sm text-slate-300">微積分、線性代數、代數助教</p>
                     </div>
-                    <div class="p-4 glass-card rounded-xl border-l-4 border-purple-500">
-                        <h4 class="font-bold text-purple-400">校隊領導</h4>
-                        <p class="text-sm text-slate-300">網球校隊、賽程安排、協同訓練</p>
+                    <div class="p-4 glass-card rounded-xl border-l-4 border-lime-400">
+                        <h4 class="font-bold text-lime-400">網球領導力</h4>
+                        <p class="text-sm text-slate-300">校隊技術協作、比賽壓力管理</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 網球精神與工程實務 -->
+    <section id="tennis-spirit" class="py-24 px-6 bg-slate-900/20">
+        <div class="max-w-6xl mx-auto">
+            <div class="glass-card p-10 rounded-3xl border border-lime-500/20 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <i class="fas fa-table-tennis text-8xl text-lime-400"></i>
+                </div>
+                <h3 class="text-3xl font-bold mb-8 flex items-center gap-4">
+                    <span class="p-3 bg-lime-500/20 rounded-xl text-lime-400 text-xl"><i class="fas fa-medal"></i></span>
+                    網球精神與 AI 開發的共通點
+                </h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-100 mb-3 underline decoration-lime-500 decoration-2 underline-offset-4">高壓下的穩定度</h4>
+                        <p class="text-slate-400 text-sm">如同在關鍵賽末點保持冷靜，我在模型訓練遇到瓶頸或系統上線的高壓環境中，依然能維持邏輯清晰，穩定解決 bug。</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-100 mb-3 underline decoration-lime-500 decoration-2 underline-offset-4">持續微調的堅持</h4>
+                        <p class="text-slate-400 text-sm">網球動作需要數萬次的微調，這與超參數調整 (Hyperparameter Tuning) 異曲同工，我對模型性能的極致追求永不停歇。</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-100 mb-3 underline decoration-lime-500 decoration-2 underline-offset-4">戰術與策略思考</h4>
+                        <p class="text-slate-400 text-sm">比賽中需要分析對手並制定戰術；在開發中，我同樣擅長分析業務場景，選擇最合適的數學模型與算法架構。</p>
                     </div>
                 </div>
             </div>
@@ -199,13 +258,13 @@
             
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- 專案 1 -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('人像追蹤偵測系統', '結合 Yolo 與 Tracking 技術，實現高精度的實時人像偵測與運動軌跡追蹤。', 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800')">
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('運動影像追蹤偵測系統', '結合 Yolo 與 Tracking 技術，實現高精度的實時人像偵測與運動軌跡追蹤，可用於分析網球揮拍動作。', 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800')">
                     <div class="h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     </div>
                     <div class="p-6">
                         <span class="text-xs text-sky-400 font-bold uppercase">Computer Vision</span>
-                        <h4 class="text-xl font-bold mt-2">Yolo 人像追蹤系統</h4>
+                        <h4 class="text-xl font-bold mt-2">Yolo 運動姿態追蹤</h4>
                         <div class="flex gap-2 mt-4">
                             <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">PyTorch</span>
                             <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">OpenCV</span>
@@ -251,7 +310,7 @@
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16">
             <div class="md:w-1/3">
                 <h3 class="text-4xl font-bold mb-6">歡迎交流合作</h3>
-                <p class="text-slate-400 mb-8">正在尋找 AI/ML Engineer 職位，致力於協助企業提升研發效率與資料應用能力。</p>
+                <p class="text-slate-400 mb-8">正在尋找 AI/ML Engineer 職位，致力於協助企業提升研發效率與資料應用能力。期待在技術場上與您來一場精采的對話！</p>
                 <div class="space-y-4 text-slate-300">
                     <p><i class="fas fa-envelope mr-3 text-sky-400"></i> your.email@example.com</p>
                     <p><i class="fab fa-linkedin mr-4 text-sky-400"></i> linkedin.com/in/yourprofile</p>
