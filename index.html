@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人品牌網站 | AI/ML Engineer Portfolio</title>
+    <!-- 使用 Tailwind CSS 加速開發與設計 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* 深藍底色 */
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #38bdf8;
+        }
+
+        /* 隱藏滾動條但保留功能 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        .skill-tag {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body class="text-slate-200">
+
+    <!-- 導覽列 -->
+    <nav class="fixed top-0 w-full z-50 glass-card">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text tracking-tighter">AI/ML ENGINEER</div>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="#home" class="nav-link">首頁</a>
+                <a href="#about" class="nav-link">個人簡介</a>
+                <a href="#skills" class="nav-link">專業技術</a>
+                <a href="#portfolio" class="nav-link">專案作品</a>
+                <a href="#contact" class="nav-link text-sky-400">聯絡我</a>
+            </div>
+            <!-- 行動端菜單按鈕 -->
+            <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- 行動端下拉選單 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 p-6 space-y-4">
+            <a href="#home" class="block" onclick="toggleMobileMenu()">首頁</a>
+            <a href="#about" class="block" onclick="toggleMobileMenu()">個人簡介</a>
+            <a href="#skills" class="block" onclick="toggleMobileMenu()">專業技術</a>
+            <a href="#portfolio" class="block" onclick="toggleMobileMenu()">專案作品</a>
+            <a href="#contact" class="block text-sky-400" onclick="toggleMobileMenu()">聯絡我</a>
+        </div>
+    </nav>
+
+    <!-- 首頁區塊 -->
+    <header id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="text-center max-w-4xl">
+            <h2 class="text-lg font-semibold text-sky-400 mb-4">追求嚴謹邏輯與創新應用的</h2>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">AI / 機器學習 <span class="gradient-text">工程師</span></h1>
+            <p class="text-slate-400 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+                結合紮實的數學背景與 PyTorch 深度學習實作能力。擅長將複雜資料轉化為智慧模型，專注於從模型訓練到 MLOps 部署的完整生命週期。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#about" class="px-8 py-3 bg-sky-500 hover:bg-sky-400 text-white rounded-full font-semibold transition shadow-lg shadow-sky-500/20">了解更多關於我</a>
+                <a href="#portfolio" class="px-8 py-3 border border-slate-700 hover:border-slate-500 rounded-full font-semibold transition">查看技術作品</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 關於我區塊 -->
+    <section id="about" class="py-24 px-6 bg-slate-900/50">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <div class="relative rounded-2xl overflow-hidden bg-slate-800">
+                    <!-- 建議更換為您的運動或專業形象照 -->
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop" alt="開發環境" class="w-full h-[450px] object-cover opacity-80">
+                    <div class="absolute bottom-4 left-4 flex gap-2">
+                        <span class="skill-tag bg-slate-900/80">#數學碩士</span>
+                        <span class="skill-tag bg-slate-900/80">#網球校隊</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-3xl font-bold mb-6">關於我的背景</h3>
+                <p class="text-slate-400 mb-6 leading-relaxed">
+                    我具備扎實的數學背景，擅長以嚴謹的邏輯思維分析問題，並將數學模型應用於機器學習與人工智慧領域。熟悉資料前處理、特徵工程、模型訓練與評估流程，能夠從資料到模型部署完整參與專案開發。
+                </p>
+                <p class="text-slate-400 mb-6 leading-relaxed">
+                    除了技術開發，我曾身為大學網球校隊成員，代表學校參與比賽並協助團隊訓練。這段經驗培養了我良好的團隊協作能力、高壓環境中的穩定度，以及主動持續改善的習慣。
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                    <div class="p-4 glass-card rounded-xl border-l-4 border-sky-500">
+                        <h4 class="font-bold text-sky-400">學術訓練</h4>
+                        <p class="text-sm text-slate-300">微積分、線性代數、代數助教</p>
+                    </div>
+                    <div class="p-4 glass-card rounded-xl border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-400">校隊領導</h4>
+                        <p class="text-sm text-slate-300">網球校隊、賽程安排、協同訓練</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 專業技術區塊 -->
+    <section id="skills" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold mb-4">專業技術棧</h3>
+                <div class="h-1 w-20 bg-sky-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 數學理論 -->
+                <div class="glass-card p-8 rounded-2xl border-t-2 border-sky-500">
+                    <div class="text-sky-500 text-3xl mb-4"><i class="fas fa-square-root-alt"></i></div>
+                    <h4 class="text-xl font-bold mb-4">數學理論與應用</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li>• 微積分、線性代數、機率統計</li>
+                        <li>• 離散數學、圖論與數論</li>
+                        <li>• 演算法分析與資料結構設計</li>
+                        <li>• 良好知識轉換與溝通能力</li>
+                    </ul>
+                </div>
+                
+                <!-- 機器學習 -->
+                <div class="glass-card p-8 rounded-2xl border-t-2 border-purple-500">
+                    <div class="text-purple-500 text-3xl mb-4"><i class="fas fa-brain"></i></div>
+                    <h4 class="text-xl font-bold mb-4">ML & 深度學習</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li>• Python / C++ 實作</li>
+                        <li>• PyTorch, Hugging Face</li>
+                        <li>• CNN, LSTM, Transformer</li>
+                        <li>• 物件偵測 Yolo + Tracking</li>
+                        <li>• RAG 應用與 Retrieval Agent</li>
+                    </ul>
+                </div>
+
+                <!-- 工程實務 -->
+                <div class="glass-card p-8 rounded-2xl border-t-2 border-emerald-500">
+                    <div class="text-emerald-500 text-3xl mb-4"><i class="fas fa-cogs"></i></div>
+                    <h4 class="text-xl font-bold mb-4">工程實務 & MLOps</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li>• Docker 封裝與服務部署</li>
+                        <li>• 基本 MLOps Pipeline</li>
+                        <li>• Git 版本控制與團隊開發</li>
+                        <li>• SQL 資料查詢與分析</li>
+                        <li>• 模型版本管理與監控</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集區塊 -->
+    <section id="portfolio" class="py-24 px-6 bg-slate-900/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold mb-4">專案作品集</h3>
+                <p class="text-slate-400">從數學建模到 AI 落地實踐</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 專案 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('人像追蹤偵測系統', '結合 Yolo 與 Tracking 技術，實現高精度的實時人像偵測與運動軌跡追蹤。', 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800')">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-sky-400 font-bold uppercase">Computer Vision</span>
+                        <h4 class="text-xl font-bold mt-2">Yolo 人像追蹤系統</h4>
+                        <div class="flex gap-2 mt-4">
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">PyTorch</span>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">OpenCV</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 專案 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('企業級 RAG 知識庫', '使用 Transformer 基礎開發的檢索增強生成系統，支援大規模文件檢索與 Agent 決策功能。', 'https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?w=800')">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-purple-400 font-bold uppercase">NLP / LLM</span>
+                        <h4 class="text-xl font-bold mt-2">Retrieval Agent 應用</h4>
+                        <div class="flex gap-2 mt-4">
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">Hugging Face</span>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">LangChain</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 專案 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('製造業自動化 MLOps', '針對製造自動化場景設計的模型生命週期管理流程，包含 Docker 化與自動化測試 Pipeline。', 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800')">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-emerald-400 font-bold uppercase">Engineering</span>
+                        <h4 class="text-xl font-bold mt-2">MLOps 落地實踐</h4>
+                        <div class="flex gap-2 mt-4">
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">Docker</span>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡我區塊 -->
+    <section id="contact" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16">
+            <div class="md:w-1/3">
+                <h3 class="text-4xl font-bold mb-6">歡迎交流合作</h3>
+                <p class="text-slate-400 mb-8">正在尋找 AI/ML Engineer 職位，致力於協助企業提升研發效率與資料應用能力。</p>
+                <div class="space-y-4 text-slate-300">
+                    <p><i class="fas fa-envelope mr-3 text-sky-400"></i> your.email@example.com</p>
+                    <p><i class="fab fa-linkedin mr-4 text-sky-400"></i> linkedin.com/in/yourprofile</p>
+                    <p><i class="fab fa-github mr-4 text-sky-400"></i> github.com/yourhandle</p>
+                </div>
+            </div>
+            <div class="md:w-2/3 glass-card p-8 rounded-2xl">
+                <form onsubmit="handleContact(event)" class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="您的姓名" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500">
+                        <input type="email" placeholder="Email" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500">
+                    </div>
+                    <textarea rows="5" placeholder="您的訊息或職位需求描述" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500"></textarea>
+                    <button type="submit" class="bg-sky-500 hover:bg-sky-400 px-8 py-3 rounded-lg font-bold transition flex items-center gap-2">
+                        發送訊息 <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="py-12 border-t border-slate-800 text-center text-slate-500 text-sm">
+        <p>&copy; 2025 AI/ML Engineer Portfolio. 版權所有.</p>
+    </footer>
+
+    <!-- 作品詳情彈窗 (Modal) -->
+    <div id="portfolio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-slate-950/90 backdrop-blur-sm">
+        <div class="max-w-2xl w-full glass-card rounded-3xl overflow-hidden relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl text-slate-400 hover:text-white">&times;</button>
+            <img id="modal-img" src="" class="w-full h-64 object-cover">
+            <div class="p-8">
+                <h3 id="modal-title" class="text-2xl font-bold mb-4 text-sky-400"></h3>
+                <p id="modal-desc" class="text-slate-400 leading-relaxed mb-6"></p>
+                <div class="flex space-x-4">
+                    <button class="px-6 py-2 bg-slate-700 rounded-lg font-bold hover:bg-slate-600 transition">GitHub Repo</button>
+                    <button class="px-6 py-2 bg-sky-500 rounded-lg font-bold hover:bg-sky-400 transition">技術文件</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 邏輯 -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal(title, desc, img) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-img').src = img;
+            document.getElementById('portfolio-modal').classList.remove('hidden');
+            document.getElementById('portfolio-modal').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('portfolio-modal').classList.add('hidden');
+            document.getElementById('portfolio-modal').classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleContact(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '訊息已發送 <i class="fas fa-check"></i>';
+            btn.classList.replace('bg-sky-500', 'bg-emerald-500');
+            e.target.reset();
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.replace('bg-emerald-500', 'bg-sky-500');
+            }, 3000);
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('portfolio-modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
