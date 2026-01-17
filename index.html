@@ -139,9 +139,7 @@
             <div class="relative group">
                 <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
                 <div class="relative rounded-2xl overflow-hidden bg-slate-800">
-                    <!-- 替換為展現活力或網球背景的照片 -->
                     <img src="images/IMG_4352.PNG" alt="我的個人照">
-                    <!--<img src="https://images.unsplash.com/photo-1595435064219-510cc6a5bbd4?w=800&auto=format&fit=crop" alt="網球訓練" class="w-full h-[450px] object-cover opacity-80">-->
                     <div class="absolute bottom-4 left-4 flex gap-2">
                         <span class="skill-tag bg-slate-900/80">#數學碩士</span>
                         <span class="skill-tag bg-slate-900/80">#網球校隊隊員</span>
@@ -259,7 +257,8 @@
             
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- 專案 1 -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('運動影像追蹤偵測系統', '結合 Yolo 與 Tracking 技術，實現高精度的實時人像偵測與運動軌跡追蹤，可用於分析網球揮拍動作。', 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800')">
+                <!-- 在 openModal 傳入第四個參數：你的專案網址 -->
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('運動影像追蹤偵測系統', '結合 Yolo 與 Tracking 技術，實現高精度的實時人像偵測與運動軌跡追蹤，可用於分析網球揮拍動作。', 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800', 'https://github.com/jirong-spec/human-tracking')">
                     <div class="h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     </div>
@@ -274,7 +273,7 @@
                 </div>
 
                 <!-- 專案 2 -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('企業級 RAG 知識庫', '使用 Transformer 基礎開發的檢索增強生成系統，支援大規模文件檢索與 Agent 決策功能。', 'https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?w=800')">
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('企業級 RAG 知識庫', '使用 Transformer 基礎開發的檢索增強生成系統，支援大規模文件檢索與 Agent 決策功能。', 'https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?w=800', 'https://github.com/yourhandle/rag-system')">
                     <div class="h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     </div>
@@ -289,7 +288,7 @@
                 </div>
 
                 <!-- 專案 3 -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('製造業自動化 MLOps', '針對製造自動化場景設計的模型生命週期管理流程，包含 Docker 化與自動化測試 Pipeline。', 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800')">
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('製造業自動化 MLOps', '針對製造自動化場景設計的模型生命週期管理流程，包含 Docker 化與自動化測試 Pipeline。', 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800', 'https://github.com/yourhandle/mlops-factory')">
                     <div class="h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     </div>
@@ -313,9 +312,9 @@
                 <h3 class="text-4xl font-bold mb-6">歡迎交流合作</h3>
                 <p class="text-slate-400 mb-8">正在尋找 AI/ML Engineer 職位，致力於協助企業提升研發效率與資料應用能力。期待在技術場上與您來一場精采的對話！</p>
                 <div class="space-y-4 text-slate-300">
-                    <p><i class="fas fa-envelope mr-3 text-sky-400"></i> jimmy756149@gmail.com</p>
+                    <p><i class="fas fa-envelope mr-3 text-sky-400"></i> your.email@example.com</p>
                     <p><i class="fab fa-linkedin mr-4 text-sky-400"></i> linkedin.com/in/yourprofile</p>
-                    <p><i class="fab fa-github mr-4 text-sky-400"></i> github.com/jirong-spec</p>
+                    <p><i class="fab fa-github mr-4 text-sky-400"></i> github.com/yourhandle</p>
                 </div>
             </div>
             <div class="md:w-2/3 glass-card p-8 rounded-2xl">
@@ -347,7 +346,10 @@
                 <h3 id="modal-title" class="text-2xl font-bold mb-4 text-sky-400"></h3>
                 <p id="modal-desc" class="text-slate-400 leading-relaxed mb-6"></p>
                 <div class="flex space-x-4">
-                    <button class="px-6 py-2 bg-slate-700 rounded-lg font-bold hover:bg-slate-600 transition">GitHub Repo</button>
+                    <!-- 這裡將按鈕改為 <a> 標籤，並賦予 ID 方便 JS 操作 -->
+                    <a id="modal-link" href="#" target="_blank" class="px-6 py-2 bg-slate-700 rounded-lg font-bold hover:bg-slate-600 transition flex items-center gap-2">
+                        <i class="fab fa-github"></i> 前往專案
+                    </a>
                     <button class="px-6 py-2 bg-sky-500 rounded-lg font-bold hover:bg-sky-400 transition">技術文件</button>
                 </div>
             </div>
@@ -361,10 +363,21 @@
             menu.classList.toggle('hidden');
         }
 
-        function openModal(title, desc, img) {
+        // 修改後的 openModal，現在接收連結作為參數
+        function openModal(title, desc, img, link) {
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-desc').innerText = desc;
             document.getElementById('modal-img').src = img;
+            
+            // 設定彈窗中「前往專案」按鈕的網址
+            const linkBtn = document.getElementById('modal-link');
+            if (link) {
+                linkBtn.href = link;
+                linkBtn.style.display = 'inline-flex';
+            } else {
+                linkBtn.style.display = 'none';
+            }
+
             document.getElementById('portfolio-modal').classList.remove('hidden');
             document.getElementById('portfolio-modal').classList.add('flex');
             document.body.style.overflow = 'hidden';
@@ -399,4 +412,3 @@
     </script>
 </body>
 </html>
-
