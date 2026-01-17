@@ -1,400 +1,400 @@
-<!DOCTYPE html>
-<html lang="zh-TW" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人品牌網站 | AI/ML Engineer Portfolio</title>
-    <!-- 使用 Tailwind CSS 加速開發與設計 -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* 深藍底色 */
-        }
+import React, { useState, useEffect } from 'react';
+import { 
+  Github, 
+  Linkedin, 
+  Mail, 
+  ExternalLink, 
+  ChevronDown, 
+  Code, 
+  Palette, 
+  Globe, 
+  Cpu, 
+  Send,
+  User,
+  Layers,
+  Briefcase,
+  Trophy,
+  Target,
+  Zap
+} from 'lucide-react';
 
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+// 網球拍與球的裝飾 SVG 組件
+const TennisIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="12" i="12" r="10" />
+    <path d="M12 2a10 10 0 0 1 0 20" />
+    <path d="M2 12a10 10 0 0 1 20 0" />
+  </svg>
+);
 
-        .gradient-text {
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+// 導航組件
+const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
 
-        .nav-link {
-            transition: all 0.3s ease;
-        }
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-        .nav-link:hover {
-            color: #38bdf8;
-        }
+  const navLinks = [
+    { name: '關於我', id: 'about' },
+    { name: '技能', id: 'skills' },
+    { name: '作品集', id: 'portfolio' },
+    { name: '聯絡我', id: 'contact' },
+  ];
 
-        /* 隱藏滾動條但保留功能 */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-
-        .skill-tag {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 4px 12px;
-            border-radius: 999px;
-            font-size: 0.875rem;
-            color: #38bdf8;
-        }
-
-        /* 網球動態裝飾 */
-        .tennis-ball-float {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: #ccff00;
-            border-radius: 50%;
-            opacity: 0.1;
-            filter: blur(2px);
-            z-index: 0;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(100px, 50px) rotate(90deg); }
-            50% { transform: translate(50px, 150px) rotate(180deg); }
-            75% { transform: translate(-50px, 100px) rotate(270deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
-        }
-    </style>
-</head>
-<body class="text-slate-200 overflow-x-hidden">
-
-    <!-- 網球裝飾背景層 -->
-    <div class="fixed inset-0 pointer-events-none">
-        <div class="tennis-ball-float" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
-        <div class="tennis-ball-float" style="top: 70%; left: 85%; animation-delay: -5s; width: 60px; height: 60px;"></div>
-        <div class="tennis-ball-float" style="top: 40%; left: 75%; animation-delay: -10s; opacity: 0.05;"></div>
-    </div>
-
-    <!-- 導覽列 -->
-    <nav class="fixed top-0 w-full z-50 glass-card">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold gradient-text tracking-tighter">AI/ML ENGINEER</div>
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="#home" class="nav-link">首頁</a>
-                <a href="#about" class="nav-link">個人簡介</a>
-                <a href="#skills" class="nav-link">專業技術</a>
-                <a href="#portfolio" class="nav-link">專案作品</a>
-                <a href="#tennis-spirit" class="nav-link">運動精神</a>
-                <a href="#contact" class="nav-link text-sky-400">聯絡我</a>
-            </div>
-            <!-- 行動端菜單按鈕 -->
-            <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
+  return (
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/80 backdrop-blur-md py-4 shadow-lg' : 'bg-transparent py-6'}`}>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div className="text-2xl font-bold bg-gradient-to-r from-lime-400 to-emerald-400 bg-clip-text text-transparent cursor-pointer flex items-center gap-2">
+          <TennisIcon className="w-8 h-8 text-lime-400 animate-spin-slow" />
+          <span>MATCH POINT.</span>
+        </div>
+        <div className="hidden md:flex space-x-8">
+          {navLinks.map((link) => (
+            <button 
+              key={link.id}
+              onClick={() => document.getElementById(link.id).scrollIntoView({ behavior: 'smooth' })}
+              className="text-gray-300 hover:text-white transition-colors text-sm font-medium tracking-wider"
+            >
+              {link.name}
             </button>
+          ))}
         </div>
-        <!-- 行動端下拉選單 -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 p-6 space-y-4">
-            <a href="#home" class="block" onclick="toggleMobileMenu()">首頁</a>
-            <a href="#about" class="block" onclick="toggleMobileMenu()">個人簡介</a>
-            <a href="#skills" class="block" onclick="toggleMobileMenu()">專業技術</a>
-            <a href="#portfolio" class="block" onclick="toggleMobileMenu()">專案作品</a>
-            <a href="#tennis-spirit" class="block" onclick="toggleMobileMenu()">運動精神</a>
-            <a href="#contact" class="block text-sky-400" onclick="toggleMobileMenu()">聯絡我</a>
-        </div>
+      </div>
     </nav>
+  );
+};
 
-    <!-- 首頁區塊 -->
-    <header id="home" class="min-h-screen flex items-center justify-center pt-20 px-6 relative">
-        <div class="text-center max-w-4xl z-10">
-            <h2 class="text-lg font-semibold text-sky-400 mb-4">追求嚴謹邏輯與運動韌性的</h2>
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">AI / 機器學習 <span class="gradient-text">工程師</span></h1>
-            <p class="text-slate-400 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
-                結合紮實的數學背景與 PyTorch 深度學習實作能力。我將網球場上的專注與穩定帶入 AI 開發，專注於從模型訓練到 MLOps 部署的完整生命週期。
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#about" class="px-8 py-3 bg-sky-500 hover:bg-sky-400 text-white rounded-full font-semibold transition shadow-lg shadow-sky-500/20">了解更多關於我</a>
-                <a href="#portfolio" class="px-8 py-3 border border-slate-700 hover:border-slate-500 rounded-full font-semibold transition">查看技術作品</a>
-            </div>
-        </div>
-    </header>
+// 打字效果組件
+const Typewriter = ({ texts }) => {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
 
-    <!-- 關於我區塊 -->
-    <section id="about" class="py-24 px-6 bg-slate-900/50 relative">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div class="relative group">
-                <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                <div class="relative rounded-2xl overflow-hidden bg-slate-800">
-                    <!-- 替換為展現活力或網球背景的照片 -->
-                    <img src="https://images.unsplash.com/photo-1595435064219-510cc6a5bbd4?w=800&auto=format&fit=crop" alt="網球訓練" class="w-full h-[450px] object-cover opacity-80">
-                    <div class="absolute bottom-4 left-4 flex gap-2">
-                        <span class="skill-tag bg-slate-900/80">#數學碩士</span>
-                        <span class="skill-tag bg-slate-900/80">#網球校隊隊員</span>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <h3 class="text-3xl font-bold mb-6">關於我的背景</h3>
-                <p class="text-slate-400 mb-6 leading-relaxed">
-                    我具備扎實的數學背景，擅長以嚴謹的邏輯思維分析問題，並將數學模型應用於機器學習與人工智慧領域。熟悉資料前處理、特徵工程、模型訓練與評估流程，能夠從資料到模型部署完整參與專案開發。
-                </p>
-                <p class="text-slate-400 mb-6 leading-relaxed">
-                    除了技術開發，我曾身為大學網球校隊成員，代表學校參與比賽並協助團隊訓練排程與技術協作。這段經歷不僅鍛鍊了我的體魄，更培養了我良好的團隊協作能力、在高壓比賽環境中的情緒穩定度，以及主動持續改善技術細節的習慣。
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-                    <div class="p-4 glass-card rounded-xl border-l-4 border-sky-500">
-                        <h4 class="font-bold text-sky-400">學術訓練</h4>
-                        <p class="text-sm text-slate-300">微積分、線性代數、代數助教</p>
-                    </div>
-                    <div class="p-4 glass-card rounded-xl border-l-4 border-lime-400">
-                        <h4 class="font-bold text-lime-400">網球領導力</h4>
-                        <p class="text-sm text-slate-300">校隊技術協作、比賽壓力管理</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  useEffect(() => {
+    if (subIndex === texts[index].length + 1 && !reverse) {
+      setTimeout(() => setReverse(true), 2000);
+      return;
+    }
 
-    <!-- 網球精神與工程實務 -->
-    <section id="tennis-spirit" class="py-24 px-6 bg-slate-900/20">
-        <div class="max-w-6xl mx-auto">
-            <div class="glass-card p-10 rounded-3xl border border-lime-500/20 relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-8 opacity-10">
-                    <i class="fas fa-table-tennis text-8xl text-lime-400"></i>
-                </div>
-                <h3 class="text-3xl font-bold mb-8 flex items-center gap-4">
-                    <span class="p-3 bg-lime-500/20 rounded-xl text-lime-400 text-xl"><i class="fas fa-medal"></i></span>
-                    網球精神與 AI 開發的共通點
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div>
-                        <h4 class="text-xl font-bold text-slate-100 mb-3 underline decoration-lime-500 decoration-2 underline-offset-4">高壓下的穩定度</h4>
-                        <p class="text-slate-400 text-sm">如同在關鍵賽末點保持冷靜，我在模型訓練遇到瓶頸或系統上線的高壓環境中，依然能維持邏輯清晰，穩定解決 bug。</p>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold text-slate-100 mb-3 underline decoration-lime-500 decoration-2 underline-offset-4">持續微調的堅持</h4>
-                        <p class="text-slate-400 text-sm">網球動作需要數萬次的微調，這與超參數調整 (Hyperparameter Tuning) 異曲同工，我對模型性能的極致追求永不停歇。</p>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold text-slate-100 mb-3 underline decoration-lime-500 decoration-2 underline-offset-4">戰術與策略思考</h4>
-                        <p class="text-slate-400 text-sm">比賽中需要分析對手並制定戰術；在開發中，我同樣擅長分析業務場景，選擇最合適的數學模型與算法架構。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    if (subIndex === 0 && reverse) {
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % texts.length);
+      return;
+    }
 
-    <!-- 專業技術區塊 -->
-    <section id="skills" class="py-24 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h3 class="text-3xl font-bold mb-4">專業技術棧</h3>
-                <div class="h-1 w-20 bg-sky-500 mx-auto rounded-full"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- 數學理論 -->
-                <div class="glass-card p-8 rounded-2xl border-t-2 border-sky-500">
-                    <div class="text-sky-500 text-3xl mb-4"><i class="fas fa-square-root-alt"></i></div>
-                    <h4 class="text-xl font-bold mb-4">數學理論與應用</h4>
-                    <ul class="space-y-3 text-slate-400">
-                        <li>• 微積分、線性代數、機率統計</li>
-                        <li>• 離散數學、圖論與數論</li>
-                        <li>• 演算法分析與資料結構設計</li>
-                        <li>• 良好知識轉換與溝通能力</li>
-                    </ul>
-                </div>
-                
-                <!-- 機器學習 -->
-                <div class="glass-card p-8 rounded-2xl border-t-2 border-purple-500">
-                    <div class="text-purple-500 text-3xl mb-4"><i class="fas fa-brain"></i></div>
-                    <h4 class="text-xl font-bold mb-4">ML & 深度學習</h4>
-                    <ul class="space-y-3 text-slate-400">
-                        <li>• Python / C++ 實作</li>
-                        <li>• PyTorch, Hugging Face</li>
-                        <li>• CNN, LSTM, Transformer</li>
-                        <li>• 物件偵測 Yolo + Tracking</li>
-                        <li>• RAG 應用與 Retrieval Agent</li>
-                    </ul>
-                </div>
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+    }, reverse ? 75 : 150);
 
-                <!-- 工程實務 -->
-                <div class="glass-card p-8 rounded-2xl border-t-2 border-emerald-500">
-                    <div class="text-emerald-500 text-3xl mb-4"><i class="fas fa-cogs"></i></div>
-                    <h4 class="text-xl font-bold mb-4">工程實務 & MLOps</h4>
-                    <ul class="space-y-3 text-slate-400">
-                        <li>• Docker 封裝與服務部署</li>
-                        <li>• 基本 MLOps Pipeline</li>
-                        <li>• Git 版本控制與團隊開發</li>
-                        <li>• SQL 資料查詢與分析</li>
-                        <li>• 模型版本管理與監控</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse, texts]);
 
-    <!-- 作品集區塊 -->
-    <section id="portfolio" class="py-24 px-6 bg-slate-900/50">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h3 class="text-3xl font-bold mb-4">專案作品集</h3>
-                <p class="text-slate-400">從數學建模到 AI 落地實踐</p>
-            </div>
-            
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 專案 1 -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('運動影像追蹤偵測系統', '結合 Yolo 與 Tracking 技術，實現高精度的實時人像偵測與運動軌跡追蹤，可用於分析網球揮拍動作。', 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800')">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs text-sky-400 font-bold uppercase">Computer Vision</span>
-                        <h4 class="text-xl font-bold mt-2">Yolo 運動姿態追蹤</h4>
-                        <div class="flex gap-2 mt-4">
-                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">PyTorch</span>
-                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">OpenCV</span>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <span className="text-lime-400">
+      {`${texts[index].substring(0, subIndex)}`}
+      <span className="animate-pulse">|</span>
+    </span>
+  );
+};
 
-                <!-- 專案 2 -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('企業級 RAG 知識庫', '使用 Transformer 基礎開發的檢索增強生成系統，支援大規模文件檢索與 Agent 決策功能。', 'https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?w=800')">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs text-purple-400 font-bold uppercase">NLP / LLM</span>
-                        <h4 class="text-xl font-bold mt-2">Retrieval Agent 應用</h4>
-                        <div class="flex gap-2 mt-4">
-                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">Hugging Face</span>
-                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">LangChain</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 專案 3 -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openModal('製造業自動化 MLOps', '針對製造自動化場景設計的模型生命週期管理流程，包含 Docker 化與自動化測試 Pipeline。', 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800')">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs text-emerald-400 font-bold uppercase">Engineering</span>
-                        <h4 class="text-xl font-bold mt-2">MLOps 落地實踐</h4>
-                        <div class="flex gap-2 mt-4">
-                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">Docker</span>
-                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded">CI/CD</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 聯絡我區塊 -->
-    <section id="contact" class="py-24 px-6">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16">
-            <div class="md:w-1/3">
-                <h3 class="text-4xl font-bold mb-6">歡迎交流合作</h3>
-                <p class="text-slate-400 mb-8">正在尋找 AI/ML Engineer 職位，致力於協助企業提升研發效率與資料應用能力。期待在技術場上與您來一場精采的對話！</p>
-                <div class="space-y-4 text-slate-300">
-                    <p><i class="fas fa-envelope mr-3 text-sky-400"></i> your.email@example.com</p>
-                    <p><i class="fab fa-linkedin mr-4 text-sky-400"></i> linkedin.com/in/yourprofile</p>
-                    <p><i class="fab fa-github mr-4 text-sky-400"></i> github.com/yourhandle</p>
-                </div>
-            </div>
-            <div class="md:w-2/3 glass-card p-8 rounded-2xl">
-                <form onsubmit="handleContact(event)" class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <input type="text" placeholder="您的姓名" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500">
-                        <input type="email" placeholder="Email" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500">
-                    </div>
-                    <textarea rows="5" placeholder="您的訊息或職位需求描述" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500"></textarea>
-                    <button type="submit" class="bg-sky-500 hover:bg-sky-400 px-8 py-3 rounded-lg font-bold transition flex items-center gap-2">
-                        發送訊息 <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- 頁尾 -->
-    <footer class="py-12 border-t border-slate-800 text-center text-slate-500 text-sm">
-        <p>&copy; 2025 AI/ML Engineer Portfolio. 版權所有.</p>
-    </footer>
-
-    <!-- 作品詳情彈窗 (Modal) -->
-    <div id="portfolio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-slate-950/90 backdrop-blur-sm">
-        <div class="max-w-2xl w-full glass-card rounded-3xl overflow-hidden relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl text-slate-400 hover:text-white">&times;</button>
-            <img id="modal-img" src="" class="w-full h-64 object-cover">
-            <div class="p-8">
-                <h3 id="modal-title" class="text-2xl font-bold mb-4 text-sky-400"></h3>
-                <p id="modal-desc" class="text-slate-400 leading-relaxed mb-6"></p>
-                <div class="flex space-x-4">
-                    <button class="px-6 py-2 bg-slate-700 rounded-lg font-bold hover:bg-slate-600 transition">GitHub Repo</button>
-                    <button class="px-6 py-2 bg-sky-500 rounded-lg font-bold hover:bg-sky-400 transition">技術文件</button>
-                </div>
-            </div>
-        </div>
+// 技能標籤組件
+const SkillBadge = ({ icon: Icon, name, color }) => (
+  <div className="flex flex-col items-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700 hover:border-lime-500/50 transition-all duration-300 group">
+    <div className={`p-4 rounded-xl ${color} bg-opacity-10 mb-4 group-hover:scale-110 transition-transform`}>
+      <Icon size={28} className={color.replace('bg-', 'text-')} />
     </div>
+    <span className="text-gray-300 font-medium">{name}</span>
+  </div>
+);
 
-    <!-- JavaScript 邏輯 -->
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
+// 作品卡片組件
+const ProjectCard = ({ title, category, img, description }) => (
+  <div className="group relative overflow-hidden rounded-2xl bg-slate-800 border border-slate-700">
+    <div className="aspect-video w-full overflow-hidden">
+      <img 
+        src={img} 
+        alt={title} 
+        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+      />
+    </div>
+    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+      <p className="text-lime-400 text-sm font-semibold mb-2">{category}</p>
+      <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
+      <p className="text-gray-300 text-sm mb-4 line-clamp-2">{description}</p>
+      <div className="flex space-x-4">
+        <button className="flex items-center text-white text-sm bg-lime-600 px-4 py-2 rounded-lg hover:bg-lime-500 transition-colors">
+          <ExternalLink size={16} className="mr-2" /> 預覽專案
+        </button>
+      </div>
+    </div>
+  </div>
+);
 
-        function openModal(title, desc, img) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-desc').innerText = desc;
-            document.getElementById('modal-img').src = img;
-            document.getElementById('portfolio-modal').classList.remove('hidden');
-            document.getElementById('portfolio-modal').classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
+export default function App() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-        function closeModal() {
-            document.getElementById('portfolio-modal').classList.add('hidden');
-            document.getElementById('portfolio-modal').classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      alert('訊息已送出！就像一記完美的發球。');
+      setFormData({ name: '', email: '', message: '' });
+    }, 1500);
+  };
 
-        function handleContact(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '訊息已發送 <i class="fas fa-check"></i>';
-            btn.classList.replace('bg-sky-500', 'bg-emerald-500');
-            e.target.reset();
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-100 selection:bg-lime-500/30 font-sans">
+      <Navbar />
+
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* 背景光暈微調為網球綠 */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500 rounded-full blur-[120px]"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-lime-500 rounded-full blur-[120px]"></div>
+        </div>
+        
+        <div className="relative z-10 text-center px-6">
+          <div className="inline-flex items-center gap-2 bg-slate-800/50 border border-slate-700 px-4 py-2 rounded-full mb-6 animate-fade-in">
+            <Trophy size={16} className="text-lime-400" />
+            <p className="text-lime-400 font-mono tracking-widest text-xs uppercase font-bold">前網球校隊選手 × 全端開發者</p>
+          </div>
+          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
+            精準 <span className="bg-gradient-to-r from-blue-400 to-lime-400 bg-clip-text text-transparent text-shadow-glow">控球</span> 與代碼
+          </h1>
+          <h2 className="text-2xl md:text-3xl font-light text-gray-400 h-10">
+            我將 <Typewriter texts={['ACE 球的精準', '底線抽球的韌性', '網前截擊的果斷']} /> 帶入產品開發
+          </h2>
+          <div className="mt-12 flex justify-center space-x-6">
+            <button 
+              onClick={() => document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })}
+              className="bg-lime-600 hover:bg-lime-500 text-slate-900 px-8 py-3 rounded-full font-bold transition-all shadow-lg shadow-lime-600/20"
+            >
+              進入賽局 (查看作品)
+            </button>
+            <button 
+              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+              className="border border-slate-600 hover:border-white text-white px-8 py-3 rounded-full font-bold transition-all"
+            >
+              聯繫我
+            </button>
+          </div>
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer" onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}>
+            <ChevronDown className="text-gray-500" />
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-24 bg-slate-800/30 relative">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="w-64 h-80 shrink-0 rounded-2xl overflow-hidden border-4 border-slate-700 shadow-2xl relative group">
+              <img 
+                src="https://images.unsplash.com/photo-1595435064219-c800bc791901?q=80&w=1000&auto=format&fit=crop" 
+                alt="Tennis Athlete" 
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+              />
+              <div className="absolute inset-0 bg-lime-600/20 mix-blend-overlay"></div>
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center space-x-2 mb-4">
+                <Target size={20} className="text-lime-400" />
+                <span className="text-lime-400 font-bold uppercase tracking-widest text-sm">Mental Toughness</span>
+              </div>
+              <h3 className="text-3xl font-bold mb-6 text-white">從網球場到終端機：追求極致的穩定與精準</h3>
+              <p className="text-gray-400 leading-relaxed mb-6">
+                過去網球校隊的訓練賦予了我卓越的**抗壓性**與**專注度**。在烈日下的底線拉鋸戰教會我「耐心」；在關鍵分上的發球教會我「果斷」。
+                現在，我將這些特質轉化為代碼中的嚴謹邏輯，致力於為用戶打造如完美抽球般流暢的數字體驗。
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-slate-800/50 p-4 rounded-xl border-l-4 border-lime-500">
+                  <p className="text-lime-400 font-bold text-2xl flex items-center gap-2">
+                    <Zap size={20}/> 爆發力
+                  </p>
+                  <p className="text-xs text-gray-500 uppercase mt-1">高效的敏捷開發</p>
+                </div>
+                <div className="bg-slate-800/50 p-4 rounded-xl border-l-4 border-blue-500">
+                  <p className="text-blue-400 font-bold text-2xl flex items-center gap-2">
+                    <Trophy size={20}/> 韌性
+                  </p>
+                  <p className="text-xs text-gray-500 uppercase mt-1">解決複雜技術挑戰</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">核心戰力</h2>
+            <div className="w-20 h-1 bg-lime-500 mx-auto rounded-full"></div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <SkillBadge icon={Globe} name="前端開發" color="bg-blue-500" />
+            <SkillBadge icon={Cpu} name="後端架構" color="bg-purple-500" />
+            <SkillBadge icon={Palette} name="UI/UX 設計" color="bg-pink-500" />
+            <SkillBadge icon={Layers} name="雲端服務" color="bg-orange-500" />
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-24 bg-slate-800/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-end mb-16">
+            <div>
+              <div className="flex items-center space-x-2 mb-2">
+                <Briefcase size={16} className="text-lime-400" />
+                <span className="text-lime-400 font-bold uppercase tracking-widest text-sm">Portfolio</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white">實戰專案</h2>
+            </div>
+            <button className="text-gray-400 hover:text-white flex items-center transition-colors">
+              查看全部 <ChevronDown size={20} className="-rotate-90 ml-1" />
+            </button>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <ProjectCard 
+              title="智能網球訓練分析儀" 
+              category="AI & Sport" 
+              description="結合電腦視覺技術，實時分析發球動作與落點精準度的數據系統。"
+              img="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?q=80&w=800&auto=format&fit=crop"
+            />
+            <ProjectCard 
+              title="場地預約 SaaS" 
+              category="Management System" 
+              description="為運動俱樂部開發的高效預約管理系統，具備自動化排班與即時通知功能。"
+              img="https://images.unsplash.com/photo-1622279457486-62dcc4a4977b?q=80&w=800&auto=format&fit=crop"
+            />
+            <ProjectCard 
+              title="賽事即時看板" 
+              category="Web Development" 
+              description="支撐萬人同時在線的即時比分與數據統計平台。"
+              img="https://images.unsplash.com/photo-1599586120429-48281b6f0ece?q=80&w=800&auto=format&fit=crop"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="bg-slate-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row border border-slate-700/50">
+            <div className="p-12 md:w-2/5 bg-lime-600 text-slate-900">
+              <h2 className="text-3xl font-bold mb-6 italic uppercase tracking-tighter">Ready for a Match?</h2>
+              <p className="mb-8 opacity-90 text-lg font-medium">
+                準備好開始新的對局了嗎？無論是專案合作還是網球邀約，我都非常期待。
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="bg-slate-900/10 p-3 rounded-lg"><Mail size={20} /></div>
+                  <span className="font-semibold">tennis.dev@example.com</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="bg-slate-900/10 p-3 rounded-lg"><Linkedin size={20} /></div>
+                  <span className="font-semibold">linkedin.com/in/tennisdev</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="bg-slate-900/10 p-3 rounded-lg"><Github size={20} /></div>
+                  <span className="font-semibold">github.com/tennisplayer-dev</span>
+                </div>
+              </div>
+            </div>
             
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.classList.replace('bg-emerald-500', 'bg-sky-500');
-            }, 3000);
-        }
+            <div className="p-12 md:w-3/5">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2 uppercase tracking-widest text-xs">Name</label>
+                  <input 
+                    type="text" 
+                    required
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lime-500 transition-colors"
+                    placeholder="您的名字"
+                    value={formData.name}
+                    onChange={e => setFormData({...formData, name: e.target.value})}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2 uppercase tracking-widest text-xs">Email</label>
+                  <input 
+                    type="email" 
+                    required
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lime-500 transition-colors"
+                    placeholder="email@example.com"
+                    value={formData.email}
+                    onChange={e => setFormData({...formData, email: e.target.value})}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2 uppercase tracking-widest text-xs">Message</label>
+                  <textarea 
+                    rows="4" 
+                    required
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lime-500 transition-colors"
+                    placeholder="告訴我專案內容，或是邀我打場球..."
+                    value={formData.message}
+                    onChange={e => setFormData({...formData, message: e.target.value})}
+                  ></textarea>
+                </div>
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full bg-lime-600 hover:bg-lime-500 text-slate-900 font-bold py-4 rounded-xl transition-all flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed group shadow-lg shadow-lime-600/20"
+                >
+                  {isSubmitting ? '送出中...' : (
+                    <>
+                      <span className="uppercase tracking-widest">發球 (送出)</span>
+                      <TennisIcon className="w-5 h-5 group-hover:rotate-45 transition-transform" />
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('portfolio-modal');
-            if (event.target == modal) {
-                closeModal();
-            }
+      {/* Footer */}
+      <footer className="py-12 border-t border-slate-800">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-gray-500 text-sm">
+          <p>© 2024 MATCH POINT. Powered by Tennis Spirit.</p>
+          <div className="flex space-x-6">
+            <a href="#" className="hover:text-white transition-colors">Game</a>
+            <a href="#" className="hover:text-white transition-colors">Set</a>
+            <a href="#" className="hover:text-white transition-colors">Match</a>
+          </div>
+          <div className="flex space-x-4">
+            <Github size={20} className="hover:text-white cursor-pointer" />
+            <Linkedin size={20} className="hover:text-white cursor-pointer" />
+            <Mail size={20} className="hover:text-white cursor-pointer" />
+          </div>
+        </div>
+      </footer>
+      
+      <style>{`
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
-    </script>
-</body>
-</html>
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+        .text-shadow-glow {
+          text-shadow: 0 0 20px rgba(163, 230, 53, 0.4);
+        }
+      `}</style>
+    </div>
+  );
+}
